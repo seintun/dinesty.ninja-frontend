@@ -1,14 +1,13 @@
 const initialState = {
-  biz: []
+  bizList: []
 }
 
 const BizReducer = (state = initialState, action) => {
-  console.log(action, '$$$$$')
   switch(action.type) {
-    case 'GET_BIZ':
+    case 'FETCH_BIZ_SUCCESS':
       return {
         ...state,
-        biz: action.payload
+        bizList: action.payload
       }
     default:
       return state;

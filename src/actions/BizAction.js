@@ -1,21 +1,23 @@
-const ninjaAPI = 'http://13.57.17.135/biz'
+const ninjaBizAPI = 'http://13.57.17.135/biz'
 
+// fetchBiz function will GET request ninjaAPI for JSON objects of biz
 export const fetchBiz = () => {
-  console.log('Inside Actions')
   return async dispatch => {
     try {
-      let response = await fetch(ninjaAPI, {
+      let response = await fetch(ninjaBizAPI, {
         method: "GET",
         headers: {'Content-Type':'application/json'},
       })
       let result = await response.json()
-      console.log(result, '####')
       dispatch({
-        type: 'GET_BIZ',
+        type: 'FETCH_BIZ_SUCCESS',
         payload: result,
       })
     } catch (err) {
-      console.log(err);
+      dispatch({
+        type: 'FETCH_BIZ_FAIL',
+        payload: err
+      })
     }
   }
 }
