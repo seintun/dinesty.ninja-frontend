@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, Linking } from 'react-native';
-import { Card, CardSection, Button } from './common'
+import { Card, CardSection, Button } from '../common'
 
-const BizPreview = ({ biz }) => {
-  const { name, address, phone, cuisine, img } = biz
+const BizPreview = ({ biz, navigation }) => {
+  const { name, address, cuisine, img } = biz
   const { 
     headerContentStyle,
     headerTextStyle,
@@ -12,8 +12,9 @@ const BizPreview = ({ biz }) => {
     imageStyle
   } = styles
   return(
-    <TouchableOpacity>
-      <Card>
+    // When the BizPreview card is clicked, navigates to BizInfoPage while passing the bizID props
+    <TouchableOpacity onPress={() => navigation.navigate('BizInfoPage', {bizID: biz.id})}>
+      <Card >
         <CardSection>
           <View style={thumbnailContainerStyle}>
             <Image 
@@ -36,7 +37,7 @@ const BizPreview = ({ biz }) => {
         </CardSection>
         <CardSection>
           <Button onPress={() => Linking.openURL(img)}>
-            {name}
+            {'Redirects to Info page'}
           </Button> 
         </CardSection>
       </Card>
@@ -51,12 +52,13 @@ const styles = {
     justifyContent: 'space-around'
   },
   headerTextStyle: {
-    fontSize: 18
+    fontSize: 15,
+    fontWeight: 'bold'
   },
   thumbnailStyle: {
     height: 50,
     width: 50,
-    borderRadius: 25,
+    borderRadius: 25
   },
   thumbnailContainerStyle: {
     justifyContent: 'center',
@@ -66,7 +68,7 @@ const styles = {
   },
   imageStyle: {
     borderRadius: 10,
-    height: 200,
+    height: 180,
     flex: 1,
     width: null
   }

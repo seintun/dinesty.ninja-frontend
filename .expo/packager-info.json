@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 13282,
+  "packagerPid": 19201,
   "expoServerNgrokUrl": "https://ry-kd4.anonymous.dinesty-ninja-frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.ry-kd4.anonymous.dinesty-ninja-frontend.exp.direct",
-  "ngrokPid": 13302
+  "ngrokPid": 19221
 }
