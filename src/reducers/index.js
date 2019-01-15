@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import BizReducer from './BizReducer'
+import bizReducer from './BizReducer'
 
 export default combineReducers({
-  bizList: BizReducer
+  biz: bizReducer
 });

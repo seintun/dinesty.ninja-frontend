@@ -1,8 +1,18 @@
 import React from 'react';
-import { View, Text} from 'react-native';
-import { Card, CardSection, Button } from '../common'
+import { View, Text, Linking} from 'react-native';
+import { Card, CardSection, Image } from '../common'
 
-const BizHeader = () => {
+const BizHeader = ({ bizInfo }) => {
+  const {
+    name,
+    cuisine,
+    phone,
+    address,
+    img,
+    yelpURL
+  } = bizInfo
+  const addressStr = `${address.address1}, ${address.address2}`
+  const cityStateStr = `${address.city}, ${address.state}`
   const { 
     headerContentStyle,
     headerTextStyle
@@ -11,10 +21,12 @@ const BizHeader = () => {
     <Card>
       <CardSection>
         <View style={headerContentStyle}>
-          <Text style={headerTextStyle}>Restaurant Name</Text>
-          <Text>Cuisine</Text>
-          <Text>123 Fake St, City, CA 95555</Text>
-          <Text>+1(415)123-4567</Text>
+          <Text style={headerTextStyle}>{name}</Text>
+          <Text>({cuisine})</Text>
+          <Text>{addressStr}</Text>
+          <Text>{cityStateStr}</Text>
+          <Text>{phone}</Text>
+          <Text onPress={() => Linking.openURL(yelpURL)}>View on Yelp</Text>
         </View>
       </CardSection>
     </Card>
@@ -27,7 +39,9 @@ const styles = {
     justifyContent: 'space-around'
   },
   headerTextStyle: {
-    fontSize: 18
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 3
   }
 }
 

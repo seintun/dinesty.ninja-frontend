@@ -3,34 +3,37 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import BizHeader from './BizHeader'
+import {
+  findBizByID
+} from '../../actions/BizAction'
 
 class BizInfoPage extends Component {
   static navigationOptions = { 
-    title: 'BizInfoPage', 
+    title: 'Business Info Page', 
   }
-  renderItem(item) {
-    return <ListItem item={item} />
+  async componentDidMount() {
+    const bizID = await this.props.navigation.state.params.bizID
+    await this.props.findBizByID(bizID)
   }
   render() {
-    const bizID = this.props.navigation.getParam('bizID', 'NO-ID');
-    return(
+    return !this.props.currentBizInfo.name ? null : (
       <View>
         {/* Add navigate.goBack button */}
         {/* Business Information Details */}
-        <BizHeader />
-        <Text>{bizID}</Text>
+        <BizHeader bizInfo={this.props.currentBizInfo} />
+        {/* <Text>{this.state.currentBizInfo.name}</Text> */}
         {/* Make Reservation Button */}
         {/* Menu Items bar to toggle different catgeory [Appetizers, Entrees, Desserts, Drinks]*/}
         {/* Expandable list of menu items with name, description/pricing when clicked */}
       </View>
     )
-  };
+  }
 }
 
 const mapStateToProps  = state => ({
-
+  currentBizInfo: state.biz.currentBizInfo
 })
 const mapDispatchToProps = dispatch => ({
-
+  findBizByID: bindActionCreators(findBizByID, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(BizInfoPage);

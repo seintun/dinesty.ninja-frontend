@@ -57,7 +57,7 @@ class BizList extends Component {
 }
 
 const mapStateToProps  = state => ({
-  ...state.bizList
+  ...state.biz
 })
 const mapDispatchToProps = dispatch => ({
   fetchBiz: bindActionCreators(fetchBiz, dispatch)
