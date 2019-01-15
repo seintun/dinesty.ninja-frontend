@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Button } from 'react-native';
 import BizPreview from './BizPreview'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -8,6 +8,9 @@ import {
 } from '../../actions/BizAction'
 
 class BizList extends Component {
+  static navigationOptions = { 
+    title: '🐿 Dinesty Ninja 🐳', 
+  }
   state = { }
 
   async componentDidMount() {
@@ -28,7 +31,7 @@ class BizList extends Component {
   }
   renderBiz() {
     return this.state.bizList.map(biz =>
-      <BizPreview key={biz.id} biz={biz} />
+      <BizPreview key={biz.id} biz={biz} navigation={this.props.navigation}/>
     );
   }
 
@@ -37,12 +40,17 @@ class BizList extends Component {
       headerContentStyle,
       headerTextStyle
     } = styles
+    const { navigate } = this.props.navigation
     return(
       <View style={headerContentStyle}>
         <Text style={headerTextStyle}>Popular Restaurants near you</Text>
         <ScrollView horizontal={true}>
           { this.state.bizList ? this.renderBiz() : null }
         </ScrollView>
+        <Button
+        title="Go to BizInfoPage"
+        onPress={() => navigate('BizInfoPage')}
+        />
       </View>
     )
   };
@@ -66,4 +74,5 @@ const styles = {
     margin: 8
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(BizList);

@@ -8,7 +8,7 @@ import Main from './src/Main'
 const App = () => {
   return (
     <Provider store={store}>
-      <View>
+      <View style={{ flex : 1 }}>
         <Main />
       </View>
     </Provider>
