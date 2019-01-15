@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, Linking } from 'react-native';
-import { Card, CardSection, Button } from './common'
+import { Card, CardSection, Button } from '../common'
 
 const BizPreview = ({ biz }) => {
   const { name, address, cuisine, img } = biz

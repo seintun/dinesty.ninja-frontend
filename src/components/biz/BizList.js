@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
   fetchBiz
-} from '../actions/BizAction'
+} from '../../actions/BizAction'
 
 class BizList extends Component {
   state = { }

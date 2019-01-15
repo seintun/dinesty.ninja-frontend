@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text} from 'react-native';
-import { Card, CardSection, Button } from './common'
+import { Card, CardSection, Button } from '../common'
 
 const BizHeader = () => {
   const { 

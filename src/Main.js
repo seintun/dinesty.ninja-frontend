@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Header } from './components/common'
-import BizList from './components/BizList'
-import BizInfoPage from './components/BizInfoPage'
+import BizList from './components/biz/BizList'
+import BizInfoPage from './components/biz/BizInfoPage'
 
 class Main extends Component {
   render() {
