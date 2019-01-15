@@ -9,7 +9,7 @@ const initialState = {
   currentBizMenu: {}
 }
 
-const BizReducer = (state = initialState, action) => {
+const bizReducer = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_BIZ_SUCCESS:
       return {
@@ -26,4 +26,4 @@ const BizReducer = (state = initialState, action) => {
   }
 }
 
-export default BizReducer;
+export default bizReducer;
