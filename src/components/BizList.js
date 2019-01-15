@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Button } from './common'
 import BizPreview from './BizPreview'
 import { connect } from 'react-redux';
@@ -23,10 +23,7 @@ class BizList extends Component {
 
   render() {
     return(
-      <ScrollView>
-        <Button onPress={() => this.props.fetchBiz()}>
-          Retrieve list of Biz
-        </Button>
+      <ScrollView horizontal={true}>
         { this.state.bizList ? this.renderBiz() : null }
       </ScrollView>
     )
@@ -36,9 +33,7 @@ class BizList extends Component {
 const mapStateToProps  = state => ({
   ...state.bizList
 })
-
 const mapDispatchToProps = dispatch => ({
   fetchBiz: bindActionCreators(fetchBiz, dispatch)
 })
-
 export default connect(mapStateToProps, mapDispatchToProps)(BizList);
