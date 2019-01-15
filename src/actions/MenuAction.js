@@ -6,7 +6,6 @@ import {
 
 // fetchBiz function will GET request ninjaAPI for JSON objects of biz
 export const fetchCurrentBizMenu = (bizID) => {
-  console.log(bizID, 'inside menuAction')
   return async dispatch => {
     try {
       let response = await fetch(`${ninjaBizAPI}/${bizID}/menu`, {
@@ -27,10 +26,8 @@ export const fetchCurrentBizMenu = (bizID) => {
       })
       dispatch({
         type: FETCH_CURRENTBIZMENU_SUCCESS,
-        payload: result,
+        payload: categorizedMenu,
       })
-      // console.log(result, 'action JSON')
-      console.log(categorizedMenu, 'categorized JSON')
     } catch (err) {
       dispatch({
         type: FETCH_CURRENTBIZMENU_FAIL,

@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Button } from 'react-native';
+import { Container, Tab, Tabs, ScrollableTab } from 'native-base';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
+import MenuItem from './MenuItem';
 import {
   fetchCurrentBizMenu
-} from '../../actions/MenuAction'
+} from '../../actions/MenuAction';
 
 class CurrentBizMenu extends Component {
   async componentDidMount() {
-    console.log(this.props.bizID, 'Passed bizID from BizInfoPage to CurrentBizMenu inside component')
     await this.props.fetchCurrentBizMenu(this.props.bizID)
   }
   render() {
-    const {
-      headerContentStyle,
-      headerTextStyle
-    } = styles
-    console.log(this.props.currentBizMenu, 'Lets check the store')
     return(
-      <View style={headerContentStyle}>
-        <Text style={headerTextStyle}>currentBizMenu is showing up . . . </Text>
-      </View>
+      <Container>
+        <Tabs renderTabBar={()=> <ScrollableTab />} style={{flex:1}}>
+          {Object.keys(this.props.currentBizMenu).map(tab => 
+            <Tab heading={tab} key={tab}>
+              <MenuItem menuItems={this.props.currentBizMenu[tab]}/>
+            </Tab>
+          )}
+        </Tabs>
+      </Container>
     )
   };
 }
@@ -31,17 +32,5 @@ const mapStateToProps  = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchCurrentBizMenu: bindActionCreators(fetchCurrentBizMenu, dispatch)
 })
-
-const styles = {
-  headerContentStyle: {
-    flextDirection: 'column',
-    justifyContent: 'space-around'
-  },
-  headerTextStyle: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    margin: 8
-  }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentBizMenu);

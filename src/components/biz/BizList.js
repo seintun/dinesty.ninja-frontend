@@ -11,7 +11,7 @@ class BizList extends Component {
   static navigationOptions = { 
     title: '🐿 Dinesty Ninja 🐳', 
   }
-  state = { }
+  state = {}
 
   async componentDidMount() {
     await this.props.fetchBiz()
@@ -40,17 +40,12 @@ class BizList extends Component {
       headerContentStyle,
       headerTextStyle
     } = styles
-    const { navigate } = this.props.navigation
     return(
       <View style={headerContentStyle}>
         <Text style={headerTextStyle}>Popular Restaurants near you</Text>
         <ScrollView horizontal={true}>
           { this.state.bizList ? this.renderBiz() : null }
         </ScrollView>
-        <Button
-        title="Go to BizInfoPage"
-        onPress={() => navigate('BizInfoPage')}
-        />
       </View>
     )
   };
