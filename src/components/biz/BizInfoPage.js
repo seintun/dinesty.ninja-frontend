@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import BizHeader from './BizHeader'
+import CurrentBizMenu from '../menu/CurrentBizMenu'
 import {
   findBizByID
 } from '../../actions/BizAction'
@@ -24,6 +25,7 @@ class BizInfoPage extends Component {
         {/* <Text>{this.state.currentBizInfo.name}</Text> */}
         {/* Make Reservation Button */}
         {/* Menu Items bar to toggle different catgeory [Appetizers, Entrees, Desserts, Drinks]*/}
+        <CurrentBizMenu bizID={this.props.navigation.state.params.bizID}/>
         {/* Expandable list of menu items with name, description/pricing when clicked */}
       </View>
     )
