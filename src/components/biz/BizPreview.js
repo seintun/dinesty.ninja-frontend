@@ -32,7 +32,7 @@ const BizPreview = ({ biz, navigation }) => {
         <CardSection>
           <Image
             style={imageStyle}
-            source={{ uri: img}}
+            source={{uri:img}}
           />
         </CardSection>
         <CardSection>
