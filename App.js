@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Header } from './src/components/common'
+import { View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './src/store'
+import Main from './src/Main'
 
+// Redux implemented at Application level with <Main /> component as primary view
 const App = () => {
   return (
-    <View>
-      <Header headerText='🐿 Dinesty Ninja 🐳' />
-      <Text>Welcome to Dinesty Ninja, where ninjas infiltrate line!</Text>
-    </View>
+    <Provider store={store}>
+      <View>
+        <Main />
+      </View>
+    </Provider>
   );
 };
 export default App
