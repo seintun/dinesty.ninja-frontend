@@ -7,8 +7,8 @@ class Main extends Component {
   render() {
     return(
       <View style={{ flex: 1 }}>
-        {/* <AppNavigator /> */}
-        <Order />
+        <AppNavigator />
+        {/* <Order /> */}
       </View>
     )
   };

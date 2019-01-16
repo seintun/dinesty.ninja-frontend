@@ -10,11 +10,11 @@ import {
   Input,
   Label, 
   Text, 
-  Button,
-  Thumbnail,
-  Left, 
-  Right } from "native-base";
+  Button
+} from "native-base";
 import { Ionicons } from '@expo/vector-icons';
+import ItemsInCart from '../menu/ItemsInCart'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
@@ -38,6 +38,11 @@ class Order extends Component {
   }
   setDate = (newDate) => {
     this.setState({ date: newDate });
+  }
+  renderIteminCart() {
+    return this.props.order.cart.map(item => 
+      <ItemsInCart key={item.id} item={item}/>
+    )
   }
   render() {
     return (
@@ -102,20 +107,9 @@ class Order extends Component {
             <CardItem header>
               <Text>Menu Items placed:</Text>
             </CardItem>
-            <CardItem>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{uri: `https://source.unsplash.com/1600x900/?food,dine,wine`}} />
-                  <Text>Sequoia Bourbon Barrel-Aged Sake (375ml)</Text>
-                  <Text note>$5.00</Text>
-              </Left>
-                <Right>
-                <Button style={{padding: 10, backgroundColor: '#F43309'}}>
-                  <Ionicons name="ios-close-circle" size={32} color="white"/>
-                </Button>
-              </Right>
-            </CardItem>
-            </CardItem>
+            <View style={{flex: 1}}>
+              {this.props.order.cart ? this.renderIteminCart() : null}
+            </View>
           </Card>
         </Content>
       </Container>
@@ -123,7 +117,7 @@ class Order extends Component {
   }
 }
 const mapStateToProps  = state => ({
-  // order: state.order.newOrder
+  order: state.order
 })
 const mapDispatchToProps = dispatch => ({
   // addItemtoCart: bindActionCreators(addItemtoCart, dispatch)
