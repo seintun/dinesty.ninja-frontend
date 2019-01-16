@@ -9,7 +9,9 @@ import {
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAIL,
   ADD_ITEM_TO_CART_SUCCESS,
-  ADD_ITEM_TO_CART_FAIL
+  ADD_ITEM_TO_CART_FAIL,
+  REMOVE_ITEM_FROM_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART_FAIL
 } from './types'
 
 export const setBizToOrder = (bizID, bizName) => {
@@ -67,6 +69,22 @@ export const addItemtoCart = (items) => {
     } catch (err) {
       dispatch({
         type: ADD_ITEM_TO_CART_FAIL,
+        payload: err
+      })
+    }
+  }
+}
+export const removeItemtoCart = (itemId) => {
+  console.log(itemId, 'remove what?')
+  return async dispatch => {
+    try {
+      dispatch({
+        type: REMOVE_ITEM_FROM_CART_SUCCESS,
+        payload: itemId,
+      })
+    } catch (err) {
+      dispatch({
+        type: REMOVE_ITEM_FROM_CART_FAIL,
         payload: err
       })
     }

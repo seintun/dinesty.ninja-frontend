@@ -3,7 +3,8 @@ import {
   SET_ORDER_DATE_SUCCESS,
   SET_GUESTS_SUCCESS,
   CREATE_ORDER_SUCCESS,
-  ADD_ITEM_TO_CART_SUCCESS
+  ADD_ITEM_TO_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART_SUCCESS
 } from '../actions/types'
 
 const initialState = {
@@ -48,6 +49,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...state.cart, action.payload]
+      }
+    case REMOVE_ITEM_FROM_CART_SUCCESS:
+      return {
+        ...state,
+        cart: [...state.cart].filter(item => item.id !== action.payload)
       }
     default:
       return state;
