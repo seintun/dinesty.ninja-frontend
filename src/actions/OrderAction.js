@@ -4,6 +4,8 @@ import {
   SET_BIZ_FAIL,
   SET_ORDER_DATE_SUCCESS,
   SET_ORDER_DATE_FAIL,
+  SET_GUESTS_SUCCESS,
+  SET_GUESTS_FAIL,
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAIL,
   ADD_ITEM_TO_CART_SUCCESS,
@@ -37,6 +39,21 @@ export const setOrderDate = (date) => {
     } catch (err) {
       dispatch({
         type: SET_ORDER_DATE_FAIL,
+        payload: err
+      })
+    }
+  }
+}
+export const setGuests = (number) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: SET_GUESTS_SUCCESS,
+        payload: number,
+      })
+    } catch (err) {
+      dispatch({
+        type: SET_GUESTS_FAIL,
         payload: err
       })
     }

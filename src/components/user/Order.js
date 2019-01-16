@@ -18,7 +18,9 @@ import ItemsInCart from '../menu/ItemsInCart'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
-  setBizToOrder
+  setBizToOrder,
+  setOrderDate,
+  setGuests
 } from '../../actions/OrderAction'
 
 class Order extends Component {
@@ -26,7 +28,7 @@ class Order extends Component {
     title: 'Reservation'
   }
   state = {
-    date: new Date(),
+    chosenDate: new Date(),
     newOrder: {
       bizID: "",
       userID: "",
@@ -42,12 +44,17 @@ class Order extends Component {
       tip: 0
     }
   }
+  
   async componentDidMount() {
     const { id, name} = await this.props.currentBizInfo
     await this.props.setBizToOrder(id, name)
   }
   setDate = (newDate) => {
-    this.setState({ date: newDate });
+    this.setState({chosenDate: newDate})
+    this.props.setOrderDate(newDate);
+  }
+  setGuests = (number) => {
+    this.props.setGuests(number);
   }
   renderIteminCart() {
     return this.props.order.cart.map(item => 
@@ -55,7 +62,6 @@ class Order extends Component {
     )
   }
   render() {
-    console.log(this.props.order, 'Check Store')
     return (
       <Container>
         <Content padder>
@@ -81,7 +87,7 @@ class Order extends Component {
               <View style={{flex: 1}}>
                 <DatePickerIOS
                   locale={"en"}
-                  date={this.state.date}
+                  date={this.state.chosenDate}
                   onDateChange={this.setDate}
                 />
               </View>
@@ -90,7 +96,7 @@ class Order extends Component {
               <View style={{flex: 1}}>
                 <Item fixedLabel>
                   <Label>Guest(s)</Label>
-                  <Input onChangeText={(number) => this.setState({guests: number})}/>
+                  <Input onChangeText={this.setGuests}/>
                 </Item>
               </View>
             </CardItem>
@@ -129,6 +135,8 @@ const mapStateToProps  = state => ({
   order: state.order
 })
 const mapDispatchToProps = dispatch => ({
-  setBizToOrder: bindActionCreators(setBizToOrder, dispatch)
+  setBizToOrder: bindActionCreators(setBizToOrder, dispatch),
+  setOrderDate: bindActionCreators(setOrderDate, dispatch),
+  setGuests: bindActionCreators(setGuests, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
