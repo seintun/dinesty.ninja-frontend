@@ -22,6 +22,9 @@ import {
 } from '../../actions/OrderAction'
 
 class Order extends Component {
+  static navigationOptions = { 
+    title: 'Reservation'
+  }
   state = {
     bizID: "5c346548667e879434054621",
     userID: "5c355340b9481947fa50c9ea",
@@ -47,9 +50,6 @@ class Order extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Text>Reservation Page</Text>
-        </Header>
         <Content padder>
           <Card>
             <CardItem header>

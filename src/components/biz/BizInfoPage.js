@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Container, CardItem, Text, Button } from 'native-base'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -20,23 +20,23 @@ class BizInfoPage extends Component {
   }
   renderIteminCart() {
     return this.props.order.cart.map(item => 
-      <ItemsInCart key={item.id} item={item}/>
+      <ItemsInCart key={item.id} item={item} />
     )
   }
   render() {
     return !this.props.currentBizInfo.name ? null : (
-      <Container>
-        <BizHeader bizInfo={this.props.currentBizInfo} />
-        <ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1, maxHeight: 100, borderWidth: 2}}>
           {this.props.order.cart ? this.renderIteminCart() : null}
         </ScrollView>
+        <BizHeader bizInfo={this.props.currentBizInfo} />
         <CardItem>
-          <Button style={{flex: 1}} onPress={()=> console.log('Make Reservation button pressed')}>
-            <Text>Make Reservation</Text>
+          <Button style={{flex: 1}} onPress={()=> this.props.navigation.navigate('Order')}>
+            <Text>Place Reservation</Text>
           </Button>
         </CardItem>
         <CurrentBizMenu bizID={this.props.navigation.state.params.bizID}/>
-      </Container>
+      </View>
     )
   }
 }

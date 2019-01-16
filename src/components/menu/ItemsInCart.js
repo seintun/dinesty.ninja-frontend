@@ -15,9 +15,9 @@ class ItemsInCart extends Component {
     return(
       <CardItem>
         <Left>
-          <Thumbnail source={{uri: `https://source.unsplash.com/1600x900/?food,dine,wine`}} />
+          <Thumbnail source={{uri: `https://source.unsplash.com/${price}x900/?food,dine,wine`}} />
             <Text>{name}</Text>
-            <Text note>{price}</Text>
+            <Text note>${(price/100).toFixed(2)}</Text>
         </Left>
           <Right>
           <Button style={{padding: 10, backgroundColor: '#F43309'}}>

@@ -4,6 +4,8 @@ import {
   CREATE_ORDER_FAIL,
   ADD_ITEM_TO_CART_SUCCESS,
   ADD_ITEM_TO_CART_FAIL,
+  REMOVE_ITEM_FROM_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART_FAIL
 } from './types'
 
 export const addItemtoCart = (item) => {
@@ -16,6 +18,21 @@ export const addItemtoCart = (item) => {
     } catch (err) {
       dispatch({
         type: ADD_ITEM_TO_CART_FAIL,
+        payload: err
+      })
+    }
+  }
+}
+export const removeItemtoCart = (item) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: REMOVE_ITEM_FROM_CART_SUCCESS,
+        payload: item,
+      })
+    } catch (err) {
+      dispatch({
+        type: REMOVE_ITEM_FROM_CART_FAIL,
         payload: err
       })
     }

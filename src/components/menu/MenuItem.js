@@ -25,7 +25,7 @@ class MenuItem extends Component {
               </Body>
             </Left>
             <Right>
-              <Button style={{padding: 3, flex: 1, backgroundColor: 'green'}} onPress={()=> this.handleAddItemtoCart(item)}>
+              <Button style={{padding: 3, backgroundColor: 'green'}} onPress={()=> this.handleAddItemtoCart(item)}>
                 <Ionicons name="ios-cart" color="white" />
                 <Text>Add Item</Text>
               </Button>
