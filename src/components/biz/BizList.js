@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Button } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import BizPreview from './BizPreview'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'

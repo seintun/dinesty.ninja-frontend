@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Container, Card, CardItem, Icon, Text, Button } from 'native-base'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import BizHeader from './BizHeader'
@@ -18,11 +18,15 @@ class BizInfoPage extends Component {
   }
   render() {
     return !this.props.currentBizInfo.name ? null : (
-      <View style={{flex:1}}>
+      <Container>
         <BizHeader bizInfo={this.props.currentBizInfo} />
-        {/* Make Reservation Button */}
+        <CardItem>
+          <Button style={{flex: 1}}>
+            <Text>Make Reservation</Text>
+          </Button>
+        </CardItem>
         <CurrentBizMenu bizID={this.props.navigation.state.params.bizID}/>
-      </View>
+      </Container>
     )
   }
 }
