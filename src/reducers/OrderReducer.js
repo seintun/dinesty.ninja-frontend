@@ -3,13 +3,12 @@ import {
   SET_ORDER_DATE_SUCCESS,
   SET_GUESTS_SUCCESS,
   CREATE_ORDER_SUCCESS,
-  ADD_ITEM_TO_CART_SUCCESS,
-  REMOVE_ITEM_FROM_CART_SUCCESS
+  ADD_ITEM_TO_CART_SUCCESS
 } from '../actions/types'
 
 const initialState = {
   bizID: "",
-  userID: "5c355340b9481947fa50c9ea",
+  userID: "5c35535bb9481947fa50c9eb",
   bizName: "",
   userName: "Ninja X",
   guests: 0,
@@ -41,16 +40,11 @@ const orderReducer = (state = initialState, action) => {
         guests: action.payload
       }
     case CREATE_ORDER_SUCCESS:
-      return {
-        ...state,
-        newOrder: action.payload
+      return { 
+        ...state, 
+        ...action.payload
       }
     case ADD_ITEM_TO_CART_SUCCESS:
-      return {
-        ...state,
-        cart: [...state.cart, action.payload]
-      }
-    case REMOVE_ITEM_FROM_CART_SUCCESS:
       return {
         ...state,
         cart: [...state.cart, action.payload]

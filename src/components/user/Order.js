@@ -20,7 +20,8 @@ import { bindActionCreators } from 'redux'
 import {
   setBizToOrder,
   setOrderDate,
-  setGuests
+  setGuests,
+  createOrder
 } from '../../actions/OrderAction'
 
 class Order extends Component {
@@ -51,10 +52,10 @@ class Order extends Component {
   }
   setDate = (newDate) => {
     this.setState({chosenDate: newDate})
-    this.props.setOrderDate(newDate);
+    this.props.setOrderDate(newDate.toString());
   }
   setGuests = (number) => {
-    this.props.setGuests(number);
+    this.props.setGuests(Number(number));
   }
   renderIteminCart() {
     return this.props.order.cart.map(item => 
@@ -107,7 +108,7 @@ class Order extends Component {
               </Button>
             </CardItem> */}
             <CardItem>
-              <Button style={{padding: 10, flex: 1}}  onPress={()=> console.log('Confirm Reservation button clicked!')}>
+              <Button style={{padding: 10, flex: 1}}  onPress={() => this.props.createOrder(this.props.order)}>
                 <Ionicons name="ios-restaurant" size={32} color="white" />
                 <Text>Confirm Reservation</Text>
               </Button>
@@ -137,6 +138,7 @@ const mapStateToProps  = state => ({
 const mapDispatchToProps = dispatch => ({
   setBizToOrder: bindActionCreators(setBizToOrder, dispatch),
   setOrderDate: bindActionCreators(setOrderDate, dispatch),
-  setGuests: bindActionCreators(setGuests, dispatch)
+  setGuests: bindActionCreators(setGuests, dispatch),
+  createOrder: bindActionCreators(createOrder, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
