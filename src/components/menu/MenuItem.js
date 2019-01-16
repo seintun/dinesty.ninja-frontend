@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { ScrollView, Image } from 'react-native'
 import { Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, Right } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import {
+  addItemtoCart
+} from '../../actions/OrderAction'
 
-export default class MenuItem extends Component {
+class MenuItem extends Component {
+  handleAddItemtoCart = (item) => {
+    this.props.addItemtoCart(item)
+  }
   renderItem() {
     return this.props.menuItems.map(item =>
-      <Content>
-        <Card>
+      <Content key={item.id}>
+        <Card key={item.id}>
           <CardItem>
             <Left>
               <Thumbnail source={{uri: `https://source.unsplash.com/${item.price+1}x900/?food,${item.category}`}} />
@@ -17,7 +25,7 @@ export default class MenuItem extends Component {
               </Body>
             </Left>
             <Right>
-              <Button style={{padding: 3, flex: 1, backgroundColor: 'green'}}>
+              <Button style={{padding: 3, flex: 1, backgroundColor: 'green'}} onPress={()=> this.handleAddItemtoCart(item)}>
                 <Ionicons name="ios-cart" color="white" />
                 <Text>Add Item</Text>
               </Button>
@@ -41,3 +49,10 @@ export default class MenuItem extends Component {
     );
   }
 }
+const mapStateToProps  = state => ({
+  order: state.order
+})
+const mapDispatchToProps = dispatch => ({
+  addItemtoCart: bindActionCreators(addItemtoCart, dispatch)
+})
+export default connect(mapStateToProps, mapDispatchToProps)(MenuItem)

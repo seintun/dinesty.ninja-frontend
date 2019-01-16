@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Card, CardItem, Icon, Text, Button } from 'native-base'
+import { Container, CardItem, Text, Button } from 'native-base'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import BizHeader from './BizHeader'
@@ -21,7 +21,7 @@ class BizInfoPage extends Component {
       <Container>
         <BizHeader bizInfo={this.props.currentBizInfo} />
         <CardItem>
-          <Button style={{flex: 1}}>
+          <Button style={{flex: 1}} onPress={()=> console.log('Make Reservation button pressed')}>
             <Text>Make Reservation</Text>
           </Button>
         </CardItem>
