@@ -1,13 +1,47 @@
 const ninjaOrderAPI = 'http://13.57.17.135/orders'
-import { 
+import {
+  SET_BIZ_SUCCESS,
+  SET_BIZ_FAIL,
+  SET_ORDER_DATE_SUCCESS,
+  SET_ORDER_DATE_FAIL,
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAIL,
   ADD_ITEM_TO_CART_SUCCESS,
   ADD_ITEM_TO_CART_FAIL,
   REMOVE_ITEM_FROM_CART_SUCCESS,
-  REMOVE_ITEM_FROM_CART_FAIL
+  REMOVE_ITEM_FROM_CART_FAIL,
 } from './types'
 
+export const setBizToOrder = (bizID, bizName) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: SET_BIZ_SUCCESS,
+        payload: {bizID: bizID, bizName:bizName},
+      })
+    } catch (err) {
+      dispatch({
+        type: SET_BIZ_FAIL,
+        payload: err
+      })
+    }
+  }
+}
+export const setOrderDate = (date) => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: SET_ORDER_DATE_SUCCESS,
+        payload: date,
+      })
+    } catch (err) {
+      dispatch({
+        type: SET_ORDER_DATE_FAIL,
+        payload: err
+      })
+    }
+  }
+}
 export const addItemtoCart = (item) => {
   return async dispatch => {
     try {

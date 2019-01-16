@@ -18,7 +18,7 @@ import ItemsInCart from '../menu/ItemsInCart'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {
-  // addItemtoCart
+  setBizToOrder
 } from '../../actions/OrderAction'
 
 class Order extends Component {
@@ -26,18 +26,25 @@ class Order extends Component {
     title: 'Reservation'
   }
   state = {
-    bizID: "5c346548667e879434054621",
-    userID: "5c355340b9481947fa50c9ea",
-    bizName: "Marufuku Ramen SF",
-    userName: "Ninja X",
-    guests: 0,
     date: new Date(),
-    cart: [],
-    paid: false,
-    cancelled: false,
-    total: 0,
-    tax: 0,
-    tip: 0
+    newOrder: {
+      bizID: "",
+      userID: "",
+      bizName: "",
+      userName: "",
+      guests: 0,
+      date: "",
+      cart: [],
+      paid: false,
+      cancelled: false,
+      total: 0,
+      tax: 0,
+      tip: 0
+    }
+  }
+  async componentDidMount() {
+    const { id, name} = await this.props.currentBizInfo
+    await this.props.setBizToOrder(id, name)
   }
   setDate = (newDate) => {
     this.setState({ date: newDate });
@@ -48,19 +55,20 @@ class Order extends Component {
     )
   }
   render() {
+    console.log(this.props.order, 'Check Store')
     return (
       <Container>
         <Content padder>
           <Card>
             <CardItem header>
               <View>
-                <Text>Reserved for: {this.state.date.toString().substr(0, 21)}</Text>
-                <Text>Restaurant: {this.state.bizName}</Text>
-                <Text>Name: {this.state.userName}</Text>
-                <Text>Guest(s): {this.state.guests}</Text>
-                <Text>Tax: {this.state.tax}</Text>
-                <Text>Tip: {this.state.tip}</Text>
-                <Text>Total: {this.state.total}</Text>
+                <Text>Reserved for: {this.props.order.date.toString().substr(0, 21)}</Text>
+                <Text>Restaurant: {this.props.order.bizName}</Text>
+                <Text>Name: {this.props.order.userName}</Text>
+                <Text>Guest(s): {this.props.order.guests}</Text>
+                <Text>Tax: {this.props.order.tax}</Text>
+                <Text>Tip: {this.props.order.tip}</Text>
+                <Text>Total: {this.props.order.total}</Text>
               </View>
             </CardItem>
             {/* <CardItem>
@@ -117,9 +125,10 @@ class Order extends Component {
   }
 }
 const mapStateToProps  = state => ({
+  currentBizInfo: state.biz.currentBizInfo,
   order: state.order
 })
 const mapDispatchToProps = dispatch => ({
-  // addItemtoCart: bindActionCreators(addItemtoCart, dispatch)
+  setBizToOrder: bindActionCreators(setBizToOrder, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

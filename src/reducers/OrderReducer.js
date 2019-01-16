@@ -1,16 +1,17 @@
-import { 
+import {
+  SET_BIZ_SUCCESS,
   CREATE_ORDER_SUCCESS,
   ADD_ITEM_TO_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART_SUCCESS
 } from '../actions/types'
 
 const initialState = {
-  bizID: "5c346548667e879434054621",
+  bizID: "",
   userID: "5c355340b9481947fa50c9ea",
-  bizName: "Marufuku Ramen SF",
-  userName: "Ninja X",
-  guests: 2,
-  date: "2019-02-14T15:30:00Z",
+  bizName: "",
+  userName: "Ninja XY",
+  guests: 0,
+  date: "",
   cart: [],
   paid: false,
   cancelled: false,
@@ -21,6 +22,12 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
   switch(action.type) {
+    case SET_BIZ_SUCCESS:
+    return {
+      ...state,
+      bizID: action.payload.bizID,
+      bizName: action.payload.bizName,
+    }
     case CREATE_ORDER_SUCCESS:
       return {
         ...state,
