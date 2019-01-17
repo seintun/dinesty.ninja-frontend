@@ -75,7 +75,6 @@ export const addItemtoCart = (items) => {
   }
 }
 export const removeItemtoCart = (itemId) => {
-  console.log(itemId, 'remove what?')
   return async dispatch => {
     try {
       dispatch({
