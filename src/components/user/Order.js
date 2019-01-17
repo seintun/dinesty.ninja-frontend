@@ -78,12 +78,6 @@ class Order extends Component {
                 <Text>Total: {this.props.order.total}</Text>
               </View>
             </CardItem>
-            {/* <CardItem>
-              <Button style={{padding: 10, backgroundColor: '#F43309', flex: 1}} onPress={()=> console.log('Pay $ button pressed')}>
-                <Ionicons name="ios-card" size={32} color="white" />
-                <Text>Pay ${(this.state.total/100).toFixed(2)}</Text>
-              </Button>
-            </CardItem> */}
             <CardItem>
               <View style={{flex: 1}}>
                 <DatePickerIOS
@@ -101,24 +95,12 @@ class Order extends Component {
                 </Item>
               </View>
             </CardItem>
-            {/* <CardItem>
-              <Button style={{padding: 10, flex: 1}} onPress={()=> console.log('Confirm Updates button pressed')}>
-                <Ionicons name="ios-checkmark-circle" size={32} color="white" />
-                <Text>Confirm Updates</Text>
-              </Button>
-            </CardItem> */}
             <CardItem>
               <Button style={{padding: 10, flex: 1}}  onPress={() => this.props.createOrder(this.props.order)}>
                 <Ionicons name="ios-restaurant" size={32} color="white" />
                 <Text>Confirm Reservation</Text>
               </Button>
             </CardItem>
-            {/* <CardItem>
-              <Button style={{padding: 10, flex: 1, backgroundColor: 'green'}} onPress={()=> console.log('Add item in order button pressed')}>
-                <Ionicons name="ios-cart" size={32} color="white" />
-                <Text>Add more Items</Text>
-              </Button>
-            </CardItem> */}
             <CardItem header>
               <Text>Menu Items placed:</Text>
             </CardItem>

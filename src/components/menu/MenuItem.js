@@ -18,7 +18,7 @@ class MenuItem extends Component {
         <Card key={item.id}>
           <CardItem>
             <Left>
-              <Thumbnail source={{uri: `https://source.unsplash.com/${item.price+1}x900/?food,${item.category}`}} />
+              <Thumbnail source={{uri: `https://source.unsplash.com/${item.price+100}x90/?food,${item.category}`}} />
               <Body>
                 <Text>{item.name}</Text>
                 <Text note>${(item.price/100).toFixed(2)}</Text>
@@ -35,7 +35,7 @@ class MenuItem extends Component {
             <Text style={{margin: 20}}>{item.description}</Text>
           </CardItem>
           <CardItem cardBody>
-            <Image source={{uri: `https://source.unsplash.com/${item.price}x901/?food,${item.category}`}} style={{height: 200, width: null, flex: 1}}/>
+            <Image source={{uri: `https://source.unsplash.com/${item.price-100}x91/?food,${item.category}`}} style={{height: 200, width: null, flex: 1}}/>
           </CardItem>
         </Card>
       </Content>
