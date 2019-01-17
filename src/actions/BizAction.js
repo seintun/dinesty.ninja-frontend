@@ -36,7 +36,6 @@ export const findBizByID = (bizID) => {
         headers: {'Content-Type':'application/json'},
       })
       let result = await response.json()
-      // console.log(result, '###')
       dispatch({
         type: FIND_BIZ_SUCCESS,
         payload: result,

@@ -3,13 +3,14 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import BizHeader from './BizHeader'
+import CurrentBizMenu from '../menu/CurrentBizMenu'
 import {
   findBizByID
 } from '../../actions/BizAction'
 
 class BizInfoPage extends Component {
   static navigationOptions = { 
-    title: 'Business Info Page', 
+    title: 'Business Info Page'
   }
   async componentDidMount() {
     const bizID = await this.props.navigation.state.params.bizID
@@ -17,14 +18,10 @@ class BizInfoPage extends Component {
   }
   render() {
     return !this.props.currentBizInfo.name ? null : (
-      <View>
-        {/* Add navigate.goBack button */}
-        {/* Business Information Details */}
+      <View style={{flex:1}}>
         <BizHeader bizInfo={this.props.currentBizInfo} />
-        {/* <Text>{this.state.currentBizInfo.name}</Text> */}
         {/* Make Reservation Button */}
-        {/* Menu Items bar to toggle different catgeory [Appetizers, Entrees, Desserts, Drinks]*/}
-        {/* Expandable list of menu items with name, description/pricing when clicked */}
+        <CurrentBizMenu bizID={this.props.navigation.state.params.bizID}/>
       </View>
     )
   }
