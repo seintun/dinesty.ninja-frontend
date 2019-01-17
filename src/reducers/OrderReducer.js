@@ -1,16 +1,18 @@
-import { 
+import {
+  SET_BIZ_SUCCESS,
+  SET_ORDER_DATE_SUCCESS,
+  SET_GUESTS_SUCCESS,
   CREATE_ORDER_SUCCESS,
-  ADD_ITEM_TO_CART_SUCCESS,
-  REMOVE_ITEM_FROM_CART_SUCCESS
+  ADD_ITEM_TO_CART_SUCCESS
 } from '../actions/types'
 
 const initialState = {
-  bizID: "5c346548667e879434054621",
-  userID: "5c355340b9481947fa50c9ea",
-  bizName: "Marufuku Ramen SF",
+  bizID: "",
+  userID: "5c35535bb9481947fa50c9eb",
+  bizName: "",
   userName: "Ninja X",
-  guests: 2,
-  date: "2019-02-14T15:30:00Z",
+  guests: 0,
+  date: "",
   cart: [],
   paid: false,
   cancelled: false,
@@ -21,17 +23,28 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
   switch(action.type) {
-    case CREATE_ORDER_SUCCESS:
+    case SET_BIZ_SUCCESS:
       return {
         ...state,
-        newOrder: action.payload
+        bizID: action.payload.bizID,
+        bizName: action.payload.bizName,
+      }
+    case SET_ORDER_DATE_SUCCESS:
+      return {
+        ...state,
+        date: action.payload
+      }
+    case SET_GUESTS_SUCCESS:
+      return {
+        ...state,
+        guests: action.payload
+      }
+    case CREATE_ORDER_SUCCESS:
+      return { 
+        ...state, 
+        ...action.payload
       }
     case ADD_ITEM_TO_CART_SUCCESS:
-      return {
-        ...state,
-        cart: [...state.cart, action.payload]
-      }
-    case REMOVE_ITEM_FROM_CART_SUCCESS:
       return {
         ...state,
         cart: [...state.cart, action.payload]

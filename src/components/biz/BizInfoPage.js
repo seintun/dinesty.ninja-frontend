@@ -14,12 +14,13 @@ class BizInfoPage extends Component {
   static navigationOptions = { 
     title: 'Business Info Page'
   }
+
   async componentDidMount() {
     const bizID = await this.props.navigation.state.params.bizID
     await this.props.findBizByID(bizID)
   }
   renderIteminCart() {
-    return this.props.order.cart.map(item => 
+    return this.props.order.cart.map(item =>
       <ItemsInCart key={item.id} item={item} />
     )
   }

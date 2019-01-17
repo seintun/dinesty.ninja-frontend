@@ -4,13 +4,13 @@ import {
   FETCH_CURRENTBIZMENU_FAIL
 } from './types'
 
-// fetchBiz function will GET request ninjaAPI for JSON objects of biz
+// fetchCurrentBizMenu function will GET request ninjaBizAPI for JSON objects of biz
 export const fetchCurrentBizMenu = (bizID) => {
   return async dispatch => {
     try {
       let response = await fetch(`${ninjaBizAPI}/${bizID}/menu`, {
         method: "GET",
-        headers: {'Content-Type':'application/json'},
+        headers: {'Content-Type':'application/json'}
       })
       let result = await response.json()
       let categorizedMenu = {

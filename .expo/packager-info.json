@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 81392,
-  "expoServerNgrokUrl": "https://hv-hzp.anonymous.dinesty-ninja-frontend.exp.direct",
-  "packagerNgrokUrl": "https://packager.hv-hzp.anonymous.dinesty-ninja-frontend.exp.direct",
-  "ngrokPid": 81414
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
